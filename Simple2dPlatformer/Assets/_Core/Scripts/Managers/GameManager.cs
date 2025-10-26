@@ -17,10 +17,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    
-
-
     public bool IsPlayerAlive()
     {
         return isPlayerAlive;

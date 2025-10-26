@@ -10,10 +10,14 @@ namespace _Core.Scripts.Managers
     {
         [SerializeField] private List<GameObject> platformPrefabToSpawn;
         [SerializeField] private GameObject startedPlatform;
+        [SerializeField] private Transform platformKeeper;
+        private GameManager gameManager;
         private Queue<GameObject> spawnedObjects;
-        private int offsetToSpawn = 1;
-        private int maxAmountOfPlatforms = 5;
-        GameManager gameManager;
+        
+
+        private float offsetToSpawn = 1;
+        private float borderRange = 6f;
+        private int maxAmountOfPlatforms = 50; 
 
         private void Start()
         {
@@ -30,9 +34,9 @@ namespace _Core.Scripts.Managers
             while (true)
             {
                 int randomIndex = Random.Range(0, platformPrefabToSpawn.Count);
-                GameObject platform = Instantiate(platformPrefabToSpawn[randomIndex], new Vector2(Random.Range(-6.5f, 6.5f), 9f + offsetToSpawn), Quaternion.identity);
-                offsetToSpawn += 2;
-                
+                GameObject platform = Instantiate(platformPrefabToSpawn[randomIndex], new Vector2(Random.Range(-borderRange, borderRange), 7f + offsetToSpawn), Quaternion.identity, platformKeeper);
+                offsetToSpawn += 1.8f;
+
                 spawnedObjects.Enqueue(platform);
                 if (spawnedObjects.Count >= maxAmountOfPlatforms)
                 {
@@ -45,5 +49,6 @@ namespace _Core.Scripts.Managers
             }
         }
 
+        
     }
 }

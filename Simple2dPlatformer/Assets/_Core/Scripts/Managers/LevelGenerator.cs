@@ -40,7 +40,6 @@ namespace _Core.Scripts.Managers
                 spawnedObjects.Enqueue(platform);
                 if (spawnedObjects.Count >= maxAmountOfPlatforms)
                 {
-                    Debug.Log("Max amount of platforms reached");
                     Destroy(spawnedObjects.Peek());
                     spawnedObjects.Dequeue();
                     
